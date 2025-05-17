@@ -59,16 +59,17 @@ function render(){
             inputBaru.placeholder = 'Masukkan Nama';
 
             tugas.innerHTML = '';
-            tugas.appendChild(inputBaru);
-           
+            tugas.appendChild(inputBaru);          
+        })
             simpan.addEventListener('click',function(){
-                data[index].namaTugas = inputBaru.value;
+                if(inputBaru.value){
+                    data[index].namaTugas = inputBaru.value;
+                }
                 data[index].stats = opt.selectedIndex;
                 localStorage.setItem('tugas',JSON.stringify(data));
                 inputBaru.replaceWith(nama.namaTugas)
                 render();
             }) 
-        })
     })
     }
 //Push Elemen Input Baru
