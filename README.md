@@ -11,4 +11,4 @@ Todo List interaktif dengan fitur:
 - JavaScript
 
 ##  Demo
-[Klik untuk mencoba](https://FelienZ.github.io/LSToDoList/)
+[Lets Go](https://FelienZ.github.io/LSToDoList/)
