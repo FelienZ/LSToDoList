@@ -76,6 +76,7 @@ tombol.addEventListener('click',function(e){
     e.preventDefault();
     const info ={
         namaTugas: nama.value,
+        stats:0
     } 
     if((info.namaTugas != '')){
         data.push(info);        
