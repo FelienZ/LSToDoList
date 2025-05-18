@@ -3,9 +3,29 @@ const tombol = document.getElementById('tambah');
 const list = document.getElementById('daftar');
 const table = document.getElementById('table')
 const tbody = document.getElementById('isiList');
+const mencari = document.getElementById('gocari')
+const filter = document.getElementById('filter');
+
 let data = JSON.parse(localStorage.getItem('tugas'))||[];
 
-function render(){
+mencari.addEventListener('click',function(e){
+    e.preventDefault();
+    tbody.innerHTML = ''
+    const cari = document.getElementById('cari');
+    const pencarian = cari.value;
+    let hasil =data.filter(function(nama){
+    if(nama.namaTugas.toLowerCase().includes(pencarian.toLowerCase())){
+        return true;
+        }else{
+            return false;
+        } 
+    })
+    render(hasil)
+    
+})
+
+
+function render(data){
     tbody.innerHTML = ''
     data.forEach(function(nama,index){
     const row = document.createElement('tr');
@@ -20,10 +40,8 @@ function render(){
         const opt = document.createElement('select');
         const opt1 = document.createElement('option');
         opt1.textContent = 'On Progress';
-        opt1.setAttribute('value', '0');
         const opt2 = document.createElement('option');
         opt2.textContent = 'Done';
-        opt2.setAttribute('value', '1');
         
         opt.appendChild(opt1);
         opt.appendChild(opt2);
@@ -52,23 +70,24 @@ function render(){
         hapus.addEventListener('click', function(){
             data.splice(index,1);
             localStorage.setItem('tugas',JSON.stringify(data));
-            render();
+            render(data);
         });
 
         edit.addEventListener('click', function(){
             inputBaru.placeholder = 'Masukkan Nama';
 
             tugas.innerHTML = '';
-            tugas.appendChild(inputBaru);          
+            tugas.appendChild(inputBaru);
+            
         })
-            simpan.addEventListener('click',function(){
-                if(inputBaru.value){
-                    data[index].namaTugas = inputBaru.value;
-                }
+        simpan.addEventListener('click',function(){
+            if (inputBaru.value) {
+            data[index].namaTugas = inputBaru.value;
+            }
                 data[index].stats = opt.selectedIndex;
                 localStorage.setItem('tugas',JSON.stringify(data));
                 inputBaru.replaceWith(nama.namaTugas)
-                render();
+                render(data);
             }) 
     })
     }
@@ -77,13 +96,13 @@ tombol.addEventListener('click',function(e){
     e.preventDefault();
     const info ={
         namaTugas: nama.value,
-        stats:0
+        stats :0
     } 
     if((info.namaTugas != '')){
         data.push(info);        
         localStorage.setItem('tugas',JSON.stringify(data));
-        render();
+        render(data);
         nama.value =''
     }
 })
-render();
+render(data);
