@@ -41,10 +41,10 @@
         form input, form button{
             text-align: center;
             box-sizing: border-box; 
-            margin: 10px;      
+            margin: 3px;      
         }
         form input{
-            width: 300px;
+            width: 230px;
             padding: 5px;
             border-radius: 9px;
         }
@@ -78,14 +78,6 @@
         table td select{
             border-radius: 5px;
             padding: 5px;
-        }
-        select option[value="0"]{
-            background-color: #3B71CA;
-            color: white;
-        }
-        select option[value="1"]{
-            background-color: #5cb85c;
-            color: white;
         }
         table td button{
             margin: 0 2px 0 2px ;
